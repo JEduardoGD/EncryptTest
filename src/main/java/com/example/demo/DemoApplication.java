@@ -25,44 +25,54 @@ public class DemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		if (args != null && args.length != 1) {
-			throw new DemoException("Error en argumentos");
+		if (args == null) {
+			throw new DemoException("Error en argumentos nulos");
 		}
-		String s = args[1];
+		if ( args.length != 1) {
+			throw new DemoException("Error en argumentos, se requiere exactamente un argumento");
+		}
+		String s = args[0];
 		String encrypted;
 		String decrypted;
 
 		IEncriptService encriptServiceAes = appContext.getBean("encriptServiceAes", IEncriptService.class);
-
 		encrypted = encriptServiceAes.encript(s);
 		decrypted = encriptServiceAes.decript(encrypted);
-
 		log.info("===================================");
 		log.info("encriptServiceAes");
 		log.info("String: {}", s);
 		log.info("encrypted: {}", encrypted);
 		log.info("decrypted: {}", decrypted);
 		log.info("===================================");
+		
 
 		IEncriptService encriptServiceAesEcb = appContext.getBean("encriptServiceAesEcb", IEncriptService.class);
-
 		encrypted = encriptServiceAesEcb.encript(s);
 		decrypted = encriptServiceAesEcb.decript(encrypted);
-
 		log.info("===================================");
-		log.info("encriptServiceAesDcb");
+		log.info("encriptServiceAesEcb");
 		log.info("String: {}", s);
 		log.info("encrypted: {}", encrypted);
 		log.info("decrypted: {}", decrypted);
 		log.info("===================================");
+		
 
 		IEncriptService encriptServiceAesCbc = appContext.getBean("encriptServiceAesCbc", IEncriptService.class);
-
 		encrypted = encriptServiceAesCbc.encript(s);
 		decrypted = encriptServiceAesCbc.decript(encrypted);
-
 		log.info("===================================");
-		log.info("encriptServiceAesDcb");
+		log.info("encriptServiceAesCbc");
+		log.info("String: {}", s);
+		log.info("encrypted: {}", encrypted);
+		log.info("decrypted: {}", decrypted);
+		log.info("===================================");
+		
+
+		IEncriptService encriptServiceAesGsm = appContext.getBean("encriptServiceAesGsm", IEncriptService.class);
+		encrypted = encriptServiceAesGsm.encript(s);
+		decrypted = encriptServiceAesGsm.decript(encrypted);
+		log.info("===================================");
+		log.info("encriptServiceAesGsm");
 		log.info("String: {}", s);
 		log.info("encrypted: {}", encrypted);
 		log.info("decrypted: {}", decrypted);
