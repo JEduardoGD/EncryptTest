@@ -1,4 +1,4 @@
-package com.example.demo.util;
+package digital.sepiente.tests.encrypttest.util;
 
 public final class StringUtil {
 

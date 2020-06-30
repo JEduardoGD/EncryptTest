@@ -1,4 +1,4 @@
-package com.example.demo.service.impl;
+package digital.sepiente.tests.encrypttest.impl;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
@@ -15,8 +15,8 @@ import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.exception.DemoException;
-import com.example.demo.service.IEncriptService;
+import digital.sepiente.tests.encrypttest.exception.DemoException;
+import digital.sepiente.tests.encrypttest.service.IEncriptService;
 
 @Service("encriptServiceAes")
 public class EncriptServiceAes implements IEncriptService {

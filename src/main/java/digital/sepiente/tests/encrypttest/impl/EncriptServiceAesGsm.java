@@ -1,4 +1,4 @@
-package com.example.demo.service.impl;
+package digital.sepiente.tests.encrypttest.impl;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
@@ -19,8 +19,9 @@ import javax.crypto.spec.SecretKeySpec;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.exception.DemoException;
-import com.example.demo.service.IEncriptService;
+
+import digital.sepiente.tests.encrypttest.exception.DemoException;
+import digital.sepiente.tests.encrypttest.service.IEncriptService;
 
 @Service("encriptServiceAesGsm")
 public class EncriptServiceAesGsm implements IEncriptService {

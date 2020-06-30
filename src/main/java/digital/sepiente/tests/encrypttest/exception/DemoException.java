@@ -1,4 +1,4 @@
-package com.example.demo.exception;
+package digital.sepiente.tests.encrypttest.exception;
 
 public class DemoException extends Exception {
 	/**

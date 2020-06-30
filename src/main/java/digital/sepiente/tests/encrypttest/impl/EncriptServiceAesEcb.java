@@ -1,8 +1,7 @@
-package com.example.demo.service.impl;
+package digital.sepiente.tests.encrypttest.impl;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
@@ -13,28 +12,26 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.exception.DemoException;
-import com.example.demo.service.IEncriptService;
+import digital.sepiente.tests.encrypttest.exception.DemoException;
+import digital.sepiente.tests.encrypttest.service.IEncriptService;
 
-@Service("encriptServiceAesCbc")
-public class EncriptServiceAesCbc implements IEncriptService {
+@Service("encriptServiceAesEcb")
+public class EncriptServiceAesEcb implements IEncriptService {
 
-	private static final String ALGORITHM = "AES/CBC/PKCS5Padding";
-	
-	private final static byte[] iv = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
-	private static final IvParameterSpec ivspec = new IvParameterSpec(iv);
+	private static final String ALGORITHM = "AES/ECB/PKCS7Padding";
+	// AES/ECB/PKCS5PADDING
 
 	@Value("${encode.key}")
 	private String keyEncode;
-	
-	@PostConstruct void init(){
+
+	@PostConstruct
+	void init() {
 		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 	}
 
@@ -43,12 +40,12 @@ public class EncriptServiceAesCbc implements IEncriptService {
 		try {
 			SecretKeySpec secretKey = new SecretKeySpec(keyEncode.getBytes(StandardCharsets.UTF_8.name()), "AES");
 			Cipher cipher = Cipher.getInstance(ALGORITHM, "BC");
-			cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivspec);
+			cipher.init(Cipher.ENCRYPT_MODE, secretKey);
 
 			byte[] encrypted = cipher.doFinal(str.getBytes());
 			return Base64.encodeBase64String(encrypted);
 		} catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException
-				| BadPaddingException | UnsupportedEncodingException | NoSuchProviderException | InvalidAlgorithmParameterException e) {
+				| BadPaddingException | UnsupportedEncodingException | NoSuchProviderException e) {
 			throw new DemoException(e.getLocalizedMessage(), e);
 		}
 	}
@@ -60,12 +57,12 @@ public class EncriptServiceAesCbc implements IEncriptService {
 			SecretKeySpec secretKey = new SecretKeySpec(keyEncode.getBytes(StandardCharsets.UTF_8.name()), "AES");
 			// Desencriptamos
 			Cipher cipher = Cipher.getInstance(ALGORITHM, "BC");
-			cipher.init(Cipher.DECRYPT_MODE, secretKey, ivspec);
+			cipher.init(Cipher.DECRYPT_MODE, secretKey);
 			byte[] original = cipher.doFinal(Base64.decodeBase64(encrypted));
 			// Parseamos a String
 			return new String(original, StandardCharsets.UTF_8.name());
 		} catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException
-				| BadPaddingException | UnsupportedEncodingException | NoSuchProviderException | InvalidAlgorithmParameterException e) {
+				| BadPaddingException | UnsupportedEncodingException | NoSuchProviderException e) {
 			throw new DemoException(e.getLocalizedMessage(), e);
 		}
 	}

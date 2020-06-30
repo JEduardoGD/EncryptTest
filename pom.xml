@@ -9,11 +9,11 @@
 		<version>2.3.1.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<groupId>digital.sepiente.tests</groupId>
+	<artifactId>encrypttest</artifactId>
+	<version>1.0</version>
+	<name>EncryptTest</name>
+	<description>Testing java encrypt methods</description>
 
 	<properties>
 		<java.version>1.8</java.version>

@@ -1,6 +1,6 @@
-package com.example.demo.service;
+package digital.sepiente.tests.encrypttest.service;
 
-import com.example.demo.exception.DemoException;
+import digital.sepiente.tests.encrypttest.exception.DemoException;
 
 public interface IEncriptService {
 	public String encript(String str) throws DemoException;

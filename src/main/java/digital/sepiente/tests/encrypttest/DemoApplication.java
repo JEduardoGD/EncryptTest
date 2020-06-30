@@ -1,4 +1,4 @@
-package com.example.demo;
+package digital.sepiente.tests.encrypttest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,8 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.example.demo.exception.DemoException;
-import com.example.demo.service.IEncriptService;
+import digital.sepiente.tests.encrypttest.exception.DemoException;
+import digital.sepiente.tests.encrypttest.service.IEncriptService;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
